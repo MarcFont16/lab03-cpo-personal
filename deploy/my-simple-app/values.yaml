@@ -15,8 +15,9 @@ global:
 backend:
   replicaCount: 2
   image:
-    repository: kaantryoutregistry.azurecr.io/lab02/backend
-    tag: "0.0.1"
+    # L'adreça ha de ser el teu login server d'Azure
+    repository: lab2g02registry.azurecr.io/backend 
+    tag: "latest"
     pullPolicy: Always
   service:
     type: ClusterIP
@@ -27,8 +28,8 @@ backend:
 frontend:
   replicaCount: 2
   image:
-    repository: kaantryoutregistry.azurecr.io/lab02/frontend
-    tag: "0.0.1"
+    repository: lab2g02registry.azurecr.io/frontend
+    tag: "latest"
     pullPolicy: Always
   service:
     type: ClusterIP
