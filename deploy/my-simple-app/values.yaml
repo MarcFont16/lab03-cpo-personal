@@ -1,20 +1,51 @@
-# Default values for app-chart.
-frontend:
-  replicaCount: 1
+# Default values for my-simple-app.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+# This will set the replicaset count
+replicaCount: 3
+
+# Global configuration
+global:
+  security:
+    allowInsecureImages: true
+
+# Backend configuration
+# Specific settings for the Spring Boot backend application
+backend:
+  replicaCount: 2
   image:
-    repository: <your-registry>.azurecr.io/lab03/frontend
-    tag: 0.0.1
-    pullPolicy: IfNotPresent
+    repository: kaantryoutregistry.azurecr.io/lab02/backend
+    tag: "0.0.1"
+    pullPolicy: Always
+  service:
+    type: ClusterIP
+    port: 8080
+
+# Frontend configuration
+# Settings for the frontend web application
+frontend:
+  replicaCount: 2
+  image:
+    repository: kaantryoutregistry.azurecr.io/lab02/frontend
+    tag: "0.0.1"
+    pullPolicy: Always
   service:
     type: ClusterIP
     port: 80
 
-backend:
-  replicaCount: 1
-  image:
-    repository: <your-registry>.azurecr.io/lab03/backend
-    tag: 0.0.1
-    pullPolicy: IfNotPresent
-  service:
-    type: ClusterIP
-    port: 8080
+# Application specific configuration for the Spring Boot backend.
+app:
+  port: 8080
+  version: "0.0.1"
+
+# Database configuration
+postgresql:
+  auth:
+    postgresPassword: "lab03password"
+  primary:
+    persistence:
+      enabled: false
+
+# This is for the secrets for pulling an image from a private repository
+imagePullSecrets: []
