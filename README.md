@@ -63,3 +63,5 @@ To stop and remove volumes:
 ```bash
 docker-compose -f docker-compose.yml -f docker-compose-postgres.yml down -v
 ```
+## Lab 03 Status: Success
+App deployed and verified at http://70.156.193.88
